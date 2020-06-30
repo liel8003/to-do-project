@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Update your list {{ list_id }}</title>
+    <style>
+     table, td {
+  border: 1px solid white;
+  font-family: comic sans ms;
+  text-align: center;
+  background-color:black;
+  color: white;
+}
+th {
+font-family: comic sans ms;
+text-align: center;
+color: white;
+font-size:25px;
+}
+
+    .header {
+  padding: 20px;
+  text-align: center;
+  color: #C71585;
+  background-color: black;
+  font-family: comic sans ms;
+  font-size:40px;
+}
+.button {
+  display: inline-block;
+  border-radius: 4px;
+  background-color: black;
+  border: none;
+  color: #f57e7e;
+  text-align: center;
+  font-size: 28px;
+  padding: 20px;
+  width: 200px;
+  transition: all 0.5s;
+  cursor: pointer;
+  margin: 10px;
+  font-family: comic sans ms;
+}
+
+.button span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+.button span:after {
+  content: '\00bb';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+
+.button:hover span {
+  padding-right: 25px;
+}
+
+.button:hover span:after {
+  opacity: 1;
+  right: 0;
+}
+.backbutton {
+   position: static; bottom : 40px; right: 40px;
+   height: 100px;
+   background: black;
+   float: right;
+}
+
+    </style>
+</head>
+<body style="background-color:black;">
+<div class="header">
+  <h1>TO-DO</h1>
+</div>
+<center><p style="color:#C71585;font-family: comic sans ms;font-size:25px;">List # {{ list_id[0] }}</p></center>
+<table style="width:100%">
+    <thead>
+  <tr>
+      <th>List Id</th>
+    <th>Task Id</th>
+    <th>Task Name</th>
+    <th>Description</th>
+      <th>Status</th>
+      <th>Priority</th>
+      <th>Task Owner</th>
+      <th>Change status</th>
+      <th>Change Priority</th>
+  </tr>
+  </thead>
+    <tbody>
+     {% for row in data %}
+  <tr>
+      <center>
+        <td>{{row[3]}}</td>
+    <td>{{row[0]}}</td>
+      <td>{{row[1]}}</td>
+          <td>{{row[2]}} </td>
+          <td>{{row[4]}}</td>
+          <td>{{row[5]}}</td>
+          <td>{{row[8]}}</td>
+          <td><form action="/change_status_and_priority_view/<list_id>" method="POST">
+<select id="status" name="status">
+  <option value="done">Done</option>
+  <option value="undone">Undone</option>
+</select>
+</td>
+          <td><select id="priority" name="priority">
+  <option value="1">1</option>
+  <option value="2">2</option>
+              <option value="3">3</option>
+  <option value="4">4</option>
+                <option value="5">5</option>
+</select>
+              <input type="checkbox" id="{{ row[0] }}" name="task_id" value="{{ row[0] }}">
+              <input type="checkbox" id="{{ row[3] }}" name="list_id" value="{{ row[3] }}">
+          <input type="submit" value="Change">
+
+</form></td>
+          </center>
+  </tr>
+    {% endfor %}
+<tbody>
+</table>
+<h2 style="color:#C71585;font-family: comic sans ms;font-size:25px;">{{ message }}</h2>
+
+
+<div class="backbutton">
+<button class="button" style="vertical-align:middle" onclick="window.location.href='http://localhost:8052/menu_page_view_2'"><span>MENU</span
+</div>
+
+</body>
+</html>

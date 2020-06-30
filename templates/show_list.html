@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Show My List</title>
+    <style>
+table, td {
+  border: 1px solid white;
+  font-family: comic sans ms;
+  text-align: center;
+  color: white;
+}
+th {
+font-family: comic sans ms;
+text-align: center;
+color: white;
+font-size:25px;
+}
+    .header {
+  padding: 20px;
+  text-align: center;
+  color: #C71585;
+  background-color: black;
+  font-family: comic sans ms;
+  font-size:40px;
+}
+input[type=submit], input[type=reset] {
+  background-color: white;
+  border: none;
+  color: black;
+  padding: 5px 10px;
+  text-decoration: none;
+  margin: 2px 1px;
+  cursor: pointer;
+  font-family: comic sans ms;
+}
+.button {
+  display: inline-block;
+  border-radius: 4px;
+  background-color: black;
+  border: none;
+  color: #f57e7e;
+  text-align: center;
+  font-size: 28px;
+  padding: 20px;
+  width: 200px;
+  transition: all 0.5s;
+  cursor: pointer;
+  margin: 10px;
+  font-family: comic sans ms;
+}
+
+.button span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+.button span:after {
+  content: '\00bb';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+
+.button:hover span {
+  padding-right: 25px;
+}
+
+.button:hover span:after {
+  opacity: 1;
+  right: 0;
+}
+.update {
+   position: static; bottom : 40px; left: 40px;
+   height: 100px;
+   background: black;
+   float: left;
+}
+.backbutton {
+   position: static; bottom : 40px; right: 40px;
+   height: 100px;
+   background: black;
+   float: right;
+}
+</style>
+</head>
+<body style="background-color:black;">
+<div class="header">
+  <h1>TO-DO</h1>
+</div>
+<br>
+<h2 style="color:white;font-family: comic sans ms;">List # {{ list_id[0] }}</h2><br>
+<table style="width:100%">
+    <thead>
+  <tr>
+      <th>List Id</th>
+    <th>Task Name</th>
+    <th>Description</th>
+    <th>Status</th>
+      <th>Priority</th>
+  </tr>
+  </thead>
+    <tbody>
+     {% for row in data %}
+  <tr>
+      <center>
+    <td>{{row[6]}}</td>
+    <td>{{row[2]}}</td>
+      <td>{{row[3]}}</td>
+          <td>{{row[4]}}</td>
+          <td>{{row[5]}}</td>
+          </center>
+  </tr>
+    {% endfor %}
+<tbody>
+</table>
+<br>
+<br>
+<br>
+<br>
+
+
+<div class="update">
+<button class="button" style="vertical-align:middle" onclick="window.location.href='/update_your_list/{{list_id[0]}}'"><span>Remove Tasks</span>
+</div>
+<div class="update">
+<button class="button" style="vertical-align:middle" onclick="window.location.href='/create_task_view/{{list_id[0]}}'"><span>Add Tasks</span>
+</div>
+<div class="update">
+<button class="button" style="vertical-align:middle" onclick="window.location.href='/change_status_and_priority_view/{{list_id[0]}}'"><span>Change status and Priority</span>
+</div>
+<div class="backbutton">
+<button class="button" style="vertical-align:middle" onclick="window.location.href='http://localhost:8052/menu_page_view_2'"><span>MENU</span>
+</div>
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Create Your Tasks</title>
+    <style>
+        .header {
+  padding: 20px;
+  text-align: center;
+  color: #C71585;
+  background-color: black;
+  font-family: comic sans ms;
+  font-size:40px;
+}
+
+        input[type=submit], input[type=reset] {
+  background-color: white;
+  border: none;
+  color: black;
+  padding: 5px 10px;
+  text-decoration: none;
+  margin: 2px 1px;
+  cursor: pointer;
+  font-family: comic sans ms;
+  }
+          button[type=submit] {
+  background-color: white;
+  border: none;
+  color: black;
+  padding: 5px 10px;
+  text-decoration: none;
+  margin: 2px 1px;
+  cursor: pointer;
+  font-family: comic sans ms;
+  }
+.button {
+  display: inline-block;
+  border-radius: 4px;
+  background-color: black;
+  border: none;
+  color: #f57e7e;
+  text-align: center;
+  font-size: 28px;
+  padding: 20px;
+  width: 200px;
+  transition: all 0.5s;
+  cursor: pointer;
+  margin: 10px;
+  font-family: comic sans ms;
+}
+
+.button span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+.button span:after {
+  content: '\00bb';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+
+.button:hover span {
+  padding-right: 25px;
+}
+
+.button:hover span:after {
+  opacity: 1;
+  right: 0;
+}
+.backbutton {
+   position: fixed; bottom : 40px; left: 40px;
+   height: 150px;
+   background: black;
+}
+
+
+
+    </style>
+</head>
+<body style="background-color:black;">
+<div class="header">
+  <h1>TO-DO</h1>
+</div>
+ {% if message %}
+     <b> <p style="color:#C71585;font-family: comic sans ms;">{{ message }} </b></p>
+    {% endif %}
+
+{% block content %}
+    <h4 style="color:#C71585;font-family: comic sans ms;"><b>YOUR LIST ID IS: {{ list_id }} </b></h4>
+    {% endblock %}
+<center>
+<form style="color:white;font-family: comic sans ms;" action="/create_tasks" method="post">
+    List ID: <input type="text" name="list_id">
+    Task Owner <input type="text" name="employee_id"> <br>
+    <br>
+    <br>
+    Task Name: <input type="text" name="task_name">
+    Task Description: <input type="text" name="task_description"><br>
+    <br>
+    Status: <input type="radio" name="status" value="done"> <span>Done</span><input type="radio" name="status" value="undone"><span>Undone</span><br/>
+    <br>
+    Priority:  <input type="radio" name="priority" value="1"> <span>1</span>
+    <input type="radio" name="priority" value="2"> <span>2</span>
+    <input type="radio" name="priority" value="3"> <span>3</span>
+    <input type="radio" name="priority" value="4"> <span>4</span>
+    <input type="radio" name="priority" value="5"> <span>5</span>
+
+    <br> <br>
+    <input type="reset" value="Reset">
+    <button type="submit" formaction="/create_tasks">Create another task</button>
+    <button type="submit" formaction="/show_list_view">Show My List</button>
+</form>
+ </center>
+
+<div class="backbutton">
+<button class="button" style="vertical-align:middle" onclick="window.location.href='http://localhost:8052/menu_page_view_2'"><span>MENU</span
+</div>
+</body>
+</html>

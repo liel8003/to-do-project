@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Show All Lists</title>
+        <style>
+table, td {
+  border: 1px solid white;
+  font-family: comic sans ms;
+  text-align: center;
+  background-color:black;
+  color: white;
+}
+th {
+font-family: comic sans ms;
+text-align: center;
+color: white;
+font-size:25px;
+}
+    .header {
+  padding: 20px;
+  text-align: center;
+  color: #C71585;
+  background-color: black;
+  font-family: comic sans ms;
+  font-size:40px;
+}
+.button {
+  display: inline-block;
+  border-radius: 4px;
+  background-color: black;
+  border: none;
+  color: #f57e7e;
+  text-align: center;
+  font-size: 28px;
+  padding: 20px;
+  width: 200px;
+  transition: all 0.5s;
+  cursor: pointer;
+  margin: 10px;
+  font-family: comic sans ms;
+}
+
+.button span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+.button span:after {
+  content: '\00bb';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+
+.button:hover span {
+  padding-right: 25px;
+}
+
+.button:hover span:after {
+  opacity: 1;
+  right: 0;
+}
+.backbutton {
+   position: static; bottom : 40px; left: 40px;
+   height: 150px;
+   background: black;
+}
+input[type=submit]{
+  background-color: white;
+  border: none;
+  color: black;
+  padding: 5px 10px;
+  text-decoration: none;
+  margin: 2px 1px;
+  cursor: pointer;
+}
+</style>
+</head>
+<body style="background-color:black;">
+<div class="header">
+  <h1>TO-DO</h1>
+</div>
+
+<form action="/choose_a_list" method="POST">
+      <label style="color:#C71585;font-family: comic sans ms;font-size:20px;" for="list">Choose your list:</label>
+  <select name="list_id">
+      {% for row in all_lists %}
+    <option value="{{ row[0] }}">{{ row[0] }}</option>
+       {% endfor %}
+  </select>
+  <input type="submit" value="Next">
+</form>
+
+
+<table style="width:100%">
+    <thead>
+  <tr>
+      <th>List Id</th>
+    <th>List Name</th>
+    <th>Description</th>
+    <th>Employee ID</th>
+      <th>Task Owner</th>
+  </tr>
+  </thead>
+    <tbody>
+     {% for row in all_lists %}
+  <tr>
+      <center>
+    <td>{{row[0]}}</td>
+    <td>{{row[1]}}</td>
+      <td>{{row[2]}}</td>
+          <td>{{row[3]}} </td>
+          <td>{{row[4]}}</td>
+          </center>
+  </tr>
+    {% endfor %}
+<tbody>
+</table>
+
+<div class="backbutton">
+<button class="button" style="vertical-align:middle" onclick="window.location.href='http://localhost:8052/menu_page_view_2'"><span>MENU</span
+</div>
+
+</body>
+</html>

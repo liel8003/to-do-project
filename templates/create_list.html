@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Create Your List</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <style>
+    .header {
+  padding: 20px;
+  text-align: center;
+  color: #C71585;
+  background-color: black;
+  font-family: comic sans ms;
+  font-size:40px;
+}
+input[type=submit], input[type=reset] {
+  background-color: white;
+  border: none;
+  color: black;
+  padding: 5px 10px;
+  text-decoration: none;
+  margin: 2px 1px;
+  cursor: pointer;
+  font-family: comic sans ms;
+}
+.button {
+  display: inline-block;
+  border-radius: 4px;
+  background-color: black;
+  border: none;
+  color: #f57e7e;
+  text-align: center;
+  font-size: 28px;
+  padding: 20px;
+  width: 200px;
+  transition: all 0.5s;
+  cursor: pointer;
+  margin: 10px;
+  font-family: comic sans ms;
+}
+
+.button span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+.button span:after {
+  content: '\00bb';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+
+.button:hover span {
+  padding-right: 25px;
+}
+
+.button:hover span:after {
+  opacity: 1;
+  right: 0;
+}
+.backbutton {
+   position: fixed; bottom : 40px; left: 40px;
+   height: 150px;
+   background: black;
+}
+    </style>
+</head>
+<body style="background-color:black;">
+<div class="header">
+  <h1>TO-DO</h1>
+  <p>Start to manage yourself</p>
+</div>
+<center>
+<h1 style="color: #C71585;font-family: comic sans ms;">Create New List</h1>
+ {% if message %}
+    </center>
+     <b> <p style="color: #C71585;font-family: comic sans ms;">{{ message }} </b></p>
+    {% endif %}
+
+  {% if message %}
+     <b> <p style="color: #C71585;font-family: comic sans ms;">{{ message_2 }} </b></p>
+    {% endif %}
+<center>
+<form style="color:white;font-family: comic sans ms;" action="/create_list" method="post">
+List Name: <input type="text" name="list_name">
+    Description: <input type="text" name="description">
+    Employee Id: <input type=text" name="employee_id">
+    <br><br><br>
+<input type="submit" value="Next">
+    <input type="reset" value="Reset">
+ </center>
+</form>
+
+
+<div class="backbutton">
+<button class="button" style="vertical-align:middle" onclick="window.location.href='http://localhost:8052/menu_page_view_2'"><span>MENU</span
+</div>
+
+
+
+</body>
+</html>
